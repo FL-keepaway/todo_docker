@@ -11,6 +11,7 @@ DB_NAME = os.environ.get('DB_NAME', 'todo_db')
 DB_USER = os.environ.get('DB_USER', 'todo_user')
 DB_PASSWORD = os.environ.get('DB_PASSWORD', 'StrongPass123')
 
+
 def get_db_connection():
     conn = psycopg2.connect(
         dbname=DB_NAME,
@@ -19,6 +20,7 @@ def get_db_connection():
         host=DB_HOST
     )
     return conn
+
 
 # Создаем таблицу при первом запуске
 def init_db():
@@ -33,6 +35,7 @@ def init_db():
     conn.commit()
     cur.close()
     conn.close()
+
 
 # HTML + CSS шаблон прямо в коде
 HTML_TEMPLATE = '''
@@ -73,6 +76,7 @@ HTML_TEMPLATE = '''
 </html>
 '''
 
+
 @app.route('/')
 def index():
     conn = get_db_connection()
@@ -82,6 +86,7 @@ def index():
     cur.close()
     conn.close()
     return render_template_string(HTML_TEMPLATE, tasks=tasks)
+
 
 @app.route('/add', methods=['POST'])
 def add_task():
@@ -94,6 +99,7 @@ def add_task():
         cur.close()
         conn.close()
     return redirect(url_for('index'))
+
 
 @app.route('/delete/<int:task_id>', methods=['POST'])
 def delete_task(task_id):
