@@ -56,7 +56,7 @@ HTML_TEMPLATE = '''
 </head>
 <body>
     <div class="container">
-        <h1>Todo List</h1>
+        <h1>Todo List v2.0</h1>
         <form method="post" action="/add">
             <input type="text" name="task" placeholder="Введите задачу..." required>
             <button type="submit">Добавить</button>
